@@ -1,0 +1,6 @@
+{
+  "name": "ابو طلال",
+  "description": "تطبيق ابو طلال للخدمات الرقمية والبرمجة والتسويق الإلكتروني",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
