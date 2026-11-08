@@ -41,7 +41,10 @@ data class MainUiState(
     val userPhone: String = "778215553",
     val userEmail: String = "client@abotalalpro.com",
     val isLoggedIn: Boolean = false,
-    val bookingSuccessMessage: String? = null
+    val bookingSuccessMessage: String? = null,
+    val portfolioProjects: List<com.example.model.PortfolioProject> = AppDataSource.portfolioProjects,
+    val selectedPortfolioProject: com.example.model.PortfolioProject? = null,
+    val activePortfolioCategory: String = "الكل"
 )
 
 class MainViewModel : ViewModel() {
@@ -103,6 +106,18 @@ class MainViewModel : ViewModel() {
 
     fun closeServiceDetail() {
         _uiState.update { it.copy(selectedService = null) }
+    }
+
+    fun selectPortfolioCategory(category: String) {
+        _uiState.update { it.copy(activePortfolioCategory = category) }
+    }
+
+    fun openPortfolioProject(project: com.example.model.PortfolioProject) {
+        _uiState.update { it.copy(selectedPortfolioProject = project) }
+    }
+
+    fun closePortfolioProject() {
+        _uiState.update { it.copy(selectedPortfolioProject = null) }
     }
 
     fun openBookingDialog(presetService: String = "") {

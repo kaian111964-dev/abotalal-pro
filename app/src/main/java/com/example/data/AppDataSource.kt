@@ -3,6 +3,7 @@ package com.example.data
 import com.example.R
 import com.example.model.AppNotification
 import com.example.model.ChatMessage
+import com.example.model.PortfolioProject
 import com.example.model.ServiceItem
 import com.example.model.SliderItem
 
@@ -308,6 +309,111 @@ object AppDataSource {
             text = "يمكنك سؤالي عن خدمات البرمجة، التسويق الإلكتروني، باقات الاشتراكات، أو طلب حجز خدمة مباشرة.",
             isUser = false,
             time = "10:01 ص"
+        )
+    )
+
+    val portfolioProjects: List<PortfolioProject> = listOf(
+        // 1. Websites (Top right)
+        PortfolioProject(
+            id = "web",
+            category = "المواقع",
+            badge = "مواقع",
+            title = "مواقع ويب عصرية",
+            subtitle = "تصميم وتطوير مواقع احترافية",
+            description = "تصميم وتطوير مواقع إلكترونية ومتاجر سحابية عصرية متجاوبة مع كافة الشاشات، مدعومة بأحدث لوحات التحكم وتقنيات تحسين محركات البحث والأمان العالي.",
+            imageRes = R.drawable.portfolio_card_web,
+            technologies = listOf("React", "Next.js", "Tailwind CSS", "Node.js", "PostgreSQL"),
+            features = listOf(
+                "تصميم فخم ومتجاوب 100% مع الهواتف والشاشات",
+                "سرعة تحميل فائقة وتوافق مع محركات البحث SEO",
+                "لوحة تحكم إدارية باللغة العربية لإدارة المحتوى والطلبات",
+                "بوابات دفع إلكترونية آمنة وشهادات تشفير SSL مجانية"
+            )
+        ),
+        // 2. Mobile Applications (Top left)
+        PortfolioProject(
+            id = "apps",
+            category = "التطبيقات",
+            badge = "تطبيقات",
+            title = "تطبيقات موبايل احترافية",
+            subtitle = "تصميم وتطوير تطبيقات أندرويد وiOS",
+            description = "بناء تطبيقات الهواتف الذكية بنظامي Android و iOS باستخدام أحدث تقنيات Jetpack Compose وتصميم واجهات M3 مع تجربة مستخدم سلسة وأداء فائق السرعة.",
+            imageRes = R.drawable.portfolio_card_apps,
+            technologies = listOf("Kotlin", "Jetpack Compose", "Flutter", "Firebase", "REST APIs"),
+            features = listOf(
+                "واجهات عربية أنيقة مع دعم الوضع الليلي Dark Mode",
+                "إشعارات فورية تفاعلية ونظام مصادقة متقدم",
+                "عمل في وضع عدم الاتصال Offline مع مزامنة سحابية",
+                "نشر وتجهيز التطبيقات على Google Play و App Store"
+            )
+        ),
+        // 3. Artificial Intelligence (Middle right)
+        PortfolioProject(
+            id = "ai",
+            category = "الذكاء الاصطناعي",
+            badge = "أدوات الذكاء",
+            title = "أدوات الذكاء الاصطناعي",
+            subtitle = "أدوات وتقنيات الذكاء الاصطناعي",
+            description = "دمج وتطوير أحدث حلول الذكاء الاصطناعي التوليدي، معالجة اللغات الطبيعية، توليد الصور، والمساعدين الرقميين الذكيين لأتمتة أعمالك ورفع الكفاءة.",
+            imageRes = R.drawable.portfolio_card_ai,
+            technologies = listOf("Gemini AI", "OpenAI", "Python", "LangChain", "Vector DB"),
+            features = listOf(
+                "شات بوت ذكي للرد الفوري على العملاء على مدار الساعة",
+                "توليد المحتوى الإعلاني والتسويقي التلقائي",
+                "تحليل البيانات واستخراج الرؤى الذكية والتنبؤات",
+                "أدوات معالجة الصور والتصميم بالذكاء الاصطناعي"
+            )
+        ),
+        // 4. Creative Designs (Middle left)
+        PortfolioProject(
+            id = "designs",
+            category = "التصاميم",
+            badge = "تصميمات",
+            title = "تصميمات إبداعية",
+            subtitle = "شعارات وبوسترات وهوية بصرية",
+            description = "ابتكار هويات بصرية كاملة، شعارات احترافية فريدة، وبوسترات إعلانية تسويقية جذابة تعكس تميز علامتك التجارية وتترك انطباعاً دائماً لدى عملائك.",
+            imageRes = R.drawable.portfolio_card_designs,
+            technologies = listOf("Adobe Illustrator", "Photoshop", "Figma", "After Effects"),
+            features = listOf(
+                "تصميم شعارات وهوية تجارية متكاملة بدليل استخدام",
+                "بوسترات إعلانية لمنصات التواصل الاجتماعي",
+                "تصميم واجهات المستخدم UI/UX للهواتف والمواقع",
+                "ملفات فيكتور عالية الدقة جاهزة للطباعة والنشر"
+            )
+        ),
+        // 5. Tech Services (Bottom right)
+        PortfolioProject(
+            id = "tech",
+            category = "خدمات تقنية",
+            badge = "خدمات تقنية",
+            title = "خدمات تقنية متنوعة",
+            subtitle = "خدمات تقنية وحلول متكاملة",
+            description = "حلول تقنية شاملة تشمل إعداد الخوادم السحابية، حماية الشبكات من الاختراق، سيرفرات المايكروتك، وحلول الدعم الفني المستمر للمؤسسات والأفراد.",
+            imageRes = R.drawable.portfolio_card_tech,
+            technologies = listOf("Mikrotik", "Linux Servers", "Cloudflare", "Docker", "CyberSecurity"),
+            features = listOf(
+                "إعداد شبكات وتوزيع إنترنت بكروت شحن وأنظمة حماية",
+                "استضافة خوادم سحابية وحلول نسخ احتياطي تلقائي",
+                "فحص أمان الأنظمة وإصلاح الثغرات وتأمين الحسابات",
+                "دعم فني وصيانة برمجية على مدار 24/7"
+            )
+        ),
+        // 6. Systems & Programming (Bottom left)
+        PortfolioProject(
+            id = "code",
+            category = "البرمجة",
+            badge = "برمجة",
+            title = "برمجة وتطوير الأنظمة",
+            subtitle = "حلول برمجية مخصصة واحترافية",
+            description = "تطوير أنظمة سحابية مخصصة لإدارة الأعمال، نقاط البيع (POS)، برامج المحاسبة والمخازن، وإدارة الموارد المؤسسية (ERP) المبرمجة بدقة تلبي كافة احتياجاتك.",
+            imageRes = R.drawable.portfolio_card_code,
+            technologies = listOf("Kotlin", "Spring Boot", "PostgreSQL", "Vue.js", "Docker"),
+            features = listOf(
+                "أنظمة إدارة مبيعات وفواتير متوافقة مع المتطلبات الرسمية",
+                "إدارة المخزون وتتبع المنتجات والمستودعات",
+                "صلاحيات مستخدمين متعددة المستويات وتقارير مالية تفصيلية",
+                "ربط مباشر مع تطبيقات التوصيل والخدمات الخارجية"
+            )
         )
     )
 }

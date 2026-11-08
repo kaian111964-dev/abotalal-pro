@@ -40,8 +40,21 @@ enum class Screen {
     SPLASH,
     LOGIN,
     REGISTER,
-    HOME
+    HOME,
+    PORTFOLIO
 }
+
+data class PortfolioProject(
+    val id: String,
+    val category: String,
+    val badge: String,
+    val title: String,
+    val subtitle: String,
+    val description: String,
+    @DrawableRes val imageRes: Int,
+    val technologies: List<String>,
+    val features: List<String>
+)
 
 enum class BottomTab {
     HOME,

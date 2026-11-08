@@ -27,10 +27,12 @@ import com.example.ui.dialogs.ContactUsDialog
 import com.example.ui.dialogs.DrawerMenuDialog
 import com.example.ui.dialogs.NotificationsDialog
 import com.example.ui.dialogs.ProfileDialog
+import com.example.ui.dialogs.ProjectDetailDialog
 import com.example.ui.dialogs.ServiceDetailDialog
 import com.example.ui.dialogs.SmartAssistantDialog
 import com.example.ui.screens.HomeScreen
 import com.example.ui.screens.LoginScreen
+import com.example.ui.screens.PortfolioScreen
 import com.example.ui.screens.RegisterScreen
 import com.example.ui.screens.SplashScreen
 import com.example.ui.theme.AbuTalalTheme
@@ -107,7 +109,25 @@ fun AbuTalalApp(
                         onOpenProfile = { viewModel.openProfileDialog() },
                         onSelectService = { service -> viewModel.openServiceDetail(service) },
                         onSelectBottomTab = { tab -> viewModel.selectBottomTab(tab) },
-                        onBannerAction = { viewModel.openBookingDialog("حلول الذكاء الاصطناعي") }
+                        onBannerAction = { viewModel.openBookingDialog("حلول الذكاء الاصطناعي") },
+                        onNavigateToPortfolio = { viewModel.navigateTo(Screen.PORTFOLIO) }
+                    )
+                }
+
+                Screen.PORTFOLIO -> {
+                    PortfolioScreen(
+                        isDarkMode = uiState.isDarkMode,
+                        unreadCount = uiState.unreadNotificationsCount,
+                        projects = uiState.portfolioProjects,
+                        activeCategory = uiState.activePortfolioCategory,
+                        onSelectCategory = { cat -> viewModel.selectPortfolioCategory(cat) },
+                        onOpenProject = { project -> viewModel.openPortfolioProject(project) },
+                        onToggleDarkMode = { viewModel.toggleDarkMode() },
+                        onOpenDrawer = { viewModel.openDrawerMenu() },
+                        onOpenNotifications = { viewModel.openNotificationsDialog() },
+                        onOpenProfile = { viewModel.openProfileDialog() },
+                        onSelectBottomTab = { tab -> viewModel.selectBottomTab(tab) },
+                        onNavigateHome = { viewModel.navigateTo(Screen.HOME) }
                     )
                 }
 
@@ -224,7 +244,18 @@ fun AbuTalalApp(
                     onOpenNotifications = { viewModel.openNotificationsDialog() },
                     onOpenAssistant = { viewModel.openServiceById("assistant") },
                     onOpenAbout = { viewModel.openAboutDialog() },
-                    onOpenContact = { viewModel.openContactDialog() }
+                    onOpenContact = { viewModel.openContactDialog() },
+                    onOpenPortfolio = { viewModel.navigateTo(Screen.PORTFOLIO) }
+                )
+            }
+
+            // 8. Portfolio Project Detail Dialog
+            if (uiState.selectedPortfolioProject != null) {
+                ProjectDetailDialog(
+                    project = uiState.selectedPortfolioProject,
+                    isDarkMode = uiState.isDarkMode,
+                    onDismiss = { viewModel.closePortfolioProject() },
+                    onOrderProject = { projectName -> viewModel.openBookingDialog(projectName) }
                 )
             }
         }

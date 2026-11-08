@@ -76,7 +76,8 @@ fun DrawerMenuDialog(
     onOpenNotifications: () -> Unit,
     onOpenAssistant: () -> Unit,
     onOpenAbout: () -> Unit,
-    onOpenContact: () -> Unit
+    onOpenContact: () -> Unit,
+    onOpenPortfolio: () -> Unit
 ) {
     val context = LocalContext.current
 
@@ -202,6 +203,16 @@ fun DrawerMenuDialog(
                                 onClick = {
                                     onDismiss()
                                     onOpenBooking()
+                                }
+                            )
+
+                            DrawerItem(
+                                icon = Icons.Default.GridView,
+                                title = "معرض أعمالنا",
+                                isDarkMode = isDarkMode,
+                                onClick = {
+                                    onDismiss()
+                                    onOpenPortfolio()
                                 }
                             )
 

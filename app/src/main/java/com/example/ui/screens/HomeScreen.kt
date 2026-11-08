@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -83,7 +84,8 @@ fun HomeScreen(
     onOpenProfile: () -> Unit,
     onSelectService: (ServiceItem) -> Unit,
     onSelectBottomTab: (BottomTab) -> Unit,
-    onBannerAction: () -> Unit
+    onBannerAction: () -> Unit,
+    onNavigateToPortfolio: () -> Unit
 ) {
     val currentSlide = AppDataSource.sliderItems.getOrNull(sliderIndex) ?: AppDataSource.sliderItems.first()
 
@@ -146,10 +148,16 @@ fun HomeScreen(
                         ServicesGrid(
                             services = services,
                             isDarkMode = isDarkMode,
-                            onSelectService = onSelectService,
+                            onSelectService = { service ->
+                                if (service.id == "portfolio") {
+                                    onNavigateToPortfolio()
+                                } else {
+                                    onSelectService(service)
+                                }
+                            },
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .then(if (!isVerySmallScreen) Modifier.weight(1f) else Modifier)
+                                .weight(1f)
                         )
 
                         Spacer(modifier = Modifier.height(3.dp))
@@ -454,14 +462,14 @@ private fun ServicesGrid(
     // 4 rows of 4 cards
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        verticalArrangement = Arrangement.spacedBy(3.dp)
     ) {
         val rows = services.chunked(4)
         rows.forEach { rowServices ->
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1f, fill = false),
+                    .weight(1f),
                 horizontalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 rowServices.forEach { service ->
@@ -469,7 +477,9 @@ private fun ServicesGrid(
                         service = service,
                         isDarkMode = isDarkMode,
                         onClick = { onSelectService(service) },
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxHeight()
                     )
                 }
             }
@@ -493,16 +503,15 @@ private fun ServiceCardItem(
             if (isDarkMode) Color(0xFF223868) else Color(0xFFD8E7FA)
         ),
         modifier = modifier
-            .fillMaxWidth()
             .clickable { onClick() }
     ) {
         Image(
             painter = painterResource(id = service.cardImageRes),
             contentDescription = service.title,
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .padding(1.dp),
-            contentScale = ContentScale.FillWidth
+            contentScale = ContentScale.Fit
         )
     }
 }
